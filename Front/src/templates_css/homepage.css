@@ -1,0 +1,39 @@
+.home_content{
+    width: 1920px;
+    height: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+}
+.home_form{
+    width: 500px;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 100px;
+    margin-bottom: 100px;
+    
+}
+.home_table{
+    width: 800px;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.home_input{
+    width: 200px;
+    height: 30px;
+}
+
+.home_submit{
+   
+    color: white;
+    width: 100px;
+    height: 30px;
+    border: none;
+    background-color: #985ACE;
+    border-radius: 10px;
+   
+}

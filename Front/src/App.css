@@ -1,0 +1,80 @@
+html{
+  margin: 0;
+  padding: 0;
+  background-color: #985ACE;
+}
+
+.App{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  padding: 0;
+  width: 1900px;
+  height: 800px;
+
+}
+
+.Auth_block{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 200px;
+  width: 457px;
+  height: 500px;
+  background-color: white;
+  border-radius: 50px;
+}
+.text_block{
+  display: flex;
+  width: 100px;
+  gap: 20px;
+  margin-left: 92px;
+}
+h2{
+  text-align: center;
+  margin-top: 20px;
+}
+
+.form_submit{
+ margin-left: 92px;
+  width: 200px;
+  height: 400px;
+}
+input{
+  width: 273px;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  background-color: #F8F1FF;
+}
+
+.submit{
+  margin-top: 20px;
+  color: white;
+  width: 273px;
+  height: 40px;
+  border: none;
+  background-color: #985ACE;
+  border-radius: 10px;
+}
+
+.form_registration{
+  margin-left: auto;
+  margin-right: auto;
+  width: 270px;
+  height: 40px;
+  
+}
+
+.form_registration p{
+  text-align: center;
+  text-decoration: underline;
+}
+
+.Link{
+  text-decoration: none;
+  color: black;
+  text-transform: uppercase;
+  font-weight: 800;
+
+}
+

@@ -1,0 +1,60 @@
+.conteiner{
+    width: 458px;
+    height: 627px;
+    background-color: white;
+    border-radius: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.form_regist{
+    margin-top: 30px;
+    
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.submit_regis{
+    margin-top: 20px;
+    color: white;
+    width: 273px;
+    height: 40px;
+    border: none;
+    background-color: #985ACE;
+    border-radius: 10px;
+    margin-left: 92px;
+   
+}
+
+input{
+    width: 273px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    background-color: #F8F1FF;
+  }
+
+  .input_form{
+    width: 273px;
+    height: 80px;
+    margin-left: 92px;
+  }
+
+  label {
+    margin-bottom: 5px;
+  }
+
+  .Link{
+    margin-top: 50px;
+    text-align: center;
+  }
+
+  .passErrMesage{
+    text-align: center;
+    color: red;
+  }
