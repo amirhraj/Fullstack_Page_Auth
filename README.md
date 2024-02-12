@@ -9,14 +9,17 @@ Back на Node.js
 
 ```
 
-```
+
 что-бы запустить вам необходимо иметь установленную node.js
 docker
+```
+git clone git@github.com:amirhraj/Fullstack_Page_Auth.git
+```
 
-git clone
-
-заходим в папку Front  команда npm install
-заходим в основную папку где лежит бэк npm install
+заходим в папку Front  команда 
+``` npm install ```
+заходим в основную папку где лежит бэк 
+``` npm install ```
 так загрузятся зависимости
 
 потом командой  docker compose up --build  поднимаем три контейнера 
@@ -35,3 +38,5 @@ alin@gmail.com
 alin123
 ```
 ![Страница регистрации](https://github.com/amirhraj/Fullstack_Page_Auth/blob/main/Auth.PNG)
+
+![Страница авторизации](https://github.com/amirhraj/Fullstack_Page_Auth/blob/main/Registration.PNG)
