@@ -34,3 +34,4 @@ email и логин для входа
 alin@gmail.com
 alin123
 ```
+![Страница регистрации](https://github.com/amirhraj/Fullstack_Page_Auth/blob/main/Auth.PNG)
