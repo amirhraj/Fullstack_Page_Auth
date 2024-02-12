@@ -4,6 +4,7 @@ const mysql = require('mysql2');
 // const { nanoid } = require('nanoid');
 const shortid = require('shortid');
 const { channel } = require('diagnostics_channel');
+const { link } = require('fs');
 
 
 
@@ -78,8 +79,9 @@ const { channel } = require('diagnostics_channel');
             res.writeHead(200, { 'Content-Type': 'text/plain' });
             console.log(finalResult, "finalResult")
             res.end(finalResult);
+            connection.end();
           });
-          connection.end();
+          
         });
 
 
@@ -140,16 +142,14 @@ const { channel } = require('diagnostics_channel');
 
 
       if (req.method === 'POST' && req.url === '/api/squeeze'){
-             
                  let data = '';
                   req.on('data', chunk => {
                   data += chunk.toString();
                   });
-
-
               req.on('end', () => {
                      const body = JSON.parse(data);
                     let  longUrl = body.url;
+                    let  count = body.count;
                     let hashUri = `http//${shortid.generate()}`
                      console.log(hashUri, "<---URI")
 
@@ -168,19 +168,17 @@ const { channel } = require('diagnostics_channel');
                      console.log('GOOOD')
                      });
 
-                     const sqlSelect = 'SELECT * FROM Users WHERE target = ?';
+                     const sqlSelect = 'SELECT * FROM Link WHERE target = ?';
                      const sqlInsert = `INSERT INTO Link (  short, target, count) VALUES ( ?, ?, ?)`;
                      const values = [hashUri, longUrl, 0,];
-
-   
-
                      connection.query(sqlSelect, [longUrl], function (error, results, fields) {
-                      console.log(results , "RESULTS")
+                      
                                    if (error) {
                                        console.log("Выпала ошибка ",error)
                                        res.end("Такой url существует");
                                   }
-
+                                  console.log(results , "RESULTS")
+                                  const insertedId = results.insertId;
                                   if ( !results  || results.length === 0 ){
                                     connection.query(sqlInsert, values, function (error, results, fields) {
                                       
@@ -190,24 +188,110 @@ const { channel } = require('diagnostics_channel');
                                           }
                                               resultRespons = 'OK'
                                               res.writeHead(200, { 'Content-Type': 'text/plain' });
-                                               res.end(resultRespons);
+                                               res.end( JSON.stringify([{id : insertedId,  short: hashUri, target : longUrl, count : count  }]));
                                       });
+                                      connection.end();
                                   }
-
                        })
-               
-                       connection.end();
-
-
-
-
             
               });
 
-
-
-
       }
+
+
+
+      if (req.method === 'GET' && req.url === '/api/statistics'){
+             
+        let data = '';
+         req.on('data', chunk => {
+         data += chunk.toString();
+         });
+
+
+     req.on('end', () => {
+          
+            const connection = mysql.createConnection({
+              host     : '172.20.0.5',
+              port : 3306,
+              user     : 'root',
+              password : 'test',
+              database : 'People'
+            })
+
+          connection.connect( err =>{
+            if (err){
+                console.log("упала с ошибк" ,err)
+             } 
+            console.log('GOOOD')
+            });
+
+            const sqlSelect = 'SELECT * FROM Link';
+      
+            connection.query(sqlSelect,  function (error, results, fields) {
+                          if (error) {
+                           console.error('Error fetching statistics:', error);
+                           res.writeHead(500, { 'Content-Type': 'application/json' });
+                           res.end(JSON.stringify({ error: 'Internal Server Error' }));
+                         } else {
+                            res.writeHead(200, { 'Content-Type': 'application/json' });
+                           res.end(JSON.stringify(results));
+                         }
+
+              })
+              connection.end();
+     });
+} else {
+  // res.writeHead(404, { 'Content-Type': 'application/json' });
+  // res.end(JSON.stringify({ error: 'Not Found' }));
+}
+
+if (req.method === 'POST' && req.url === '/api/updateCount') {
+  let data = '';
+  req.on('data', chunk => {
+      data += chunk.toString();
+  });
+
+  req.on('end', () => {
+      const requestData = JSON.parse(data);
+      const { id, count } = requestData;
+
+      const connection = mysql.createConnection({
+          host: '172.20.0.5',
+          port: 3306,
+          user: 'root',
+          password: 'test',
+          database: 'People'
+      });
+
+      connection.connect(err => {
+          if (err) {
+              console.log("Ошибка подключения к базе данных:", err);
+              res.writeHead(500, { 'Content-Type': 'application/json' });
+              res.end(JSON.stringify({ error: 'Internal Server Error' }));
+              return;
+          }
+
+          const sqlUpdate = 'UPDATE Link SET count = ? WHERE id = ?';
+          connection.query(sqlUpdate, [count, id], function (error, results, fields) {
+              if (error) {
+                  console.error('Ошибка при обновлении счетчика:', error);
+                  res.writeHead(500, { 'Content-Type': 'application/json' });
+                  res.end(JSON.stringify({ error: 'Internal Server Error' }));
+              } else {
+                  res.writeHead(200, { 'Content-Type': 'application/json' });
+                  res.end(JSON.stringify({ message: 'Count успешно обновлен' }));
+              }
+              connection.end();
+          });
+      });
+  });
+} else {
+  // res.writeHead(404, { 'Content-Type': 'application/json' });
+  // res.end(JSON.stringify({ error: 'Not Found' }));
+}
+
+
+
 
    
 }).listen(3000)
