@@ -59,8 +59,7 @@ const { link } = require('fs');
             }
          
  
-            //alin@gmail.com
-            //alin123
+
             const resultRespons = results.some(user=>{
 
               if (user.email === username && user.pass === password){
