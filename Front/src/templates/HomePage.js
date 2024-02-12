@@ -30,7 +30,7 @@ function HomePage (){
   };
 
     useEffect(() => {
-      // Выполнить запрос к серверу при загрузке компонента
+   
       const fetchData = async () => {
           try {
               const response = await axios.get('http://localhost:3000/api/statistics');
@@ -97,7 +97,6 @@ function HomePage (){
            <th>Короткая ссылка</th>
            <th>Исходная ссылка</th>
            <th>Количество переходов по ссылке</th> 
-           {/* Добавьте другие заголовки здесь, если необходимо */}
          </tr>
        </thead>
        <tbody>
@@ -108,9 +107,8 @@ function HomePage (){
          <td> <a href={target}  target="_blank" onClick={() => handleClick(id)}>
              {short}
           </a></td>
-            
             <td>{target}</td>
-            <td>{count}</td>
+            <td className='count'>{count}</td>
         </tr>
     ))
 }

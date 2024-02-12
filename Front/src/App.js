@@ -36,17 +36,13 @@ function App() {
 
   async function handleClick (){
     try {
-      // const response = await axios.get('http://localhost:3000/api/data');
       const response2 = await axios.post('http://localhost:3000/api/login', { email: username , password : password  });
       const data = response2.data;
       console.log(data, "Daata")
       if (data === 'OK'){
         setIsLoading(true)
         history('/home')
-      } 
-       
-     
-     
+      }   
     } catch (error) {
       console.error('Ошибка при получении данных:', error.message);
     }

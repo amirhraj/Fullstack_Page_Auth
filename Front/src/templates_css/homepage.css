@@ -37,3 +37,13 @@
     border-radius: 10px;
    
 }
+
+.count{
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+    cursor: pointer;
+}
+

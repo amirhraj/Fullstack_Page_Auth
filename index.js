@@ -1,7 +1,6 @@
 const http = require('http')
 const url = require('url')
 const mysql = require('mysql2');
-// const { nanoid } = require('nanoid');
 const shortid = require('shortid');
 const { channel } = require('diagnostics_channel');
 const { link } = require('fs');
@@ -16,7 +15,6 @@ const { link } = require('fs');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   if (req.method === 'OPTIONS') {
-    // Отправляем ответ на предварительный запрос OPTIONS с необходимыми заголовками CORS
     res.writeHead(200, {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
@@ -60,12 +58,11 @@ const { link } = require('fs');
               console.log("Выпала ошибка ",error)
             }
          
-            // console.log(results, "RESULTS BACK")
+ 
             //alin@gmail.com
             //alin123
             const resultRespons = results.some(user=>{
-              // console.log(user.pass , password, user.email ,username, "WHAT RESULT")
-              // console.log(user.email === username && user.pass === password, "WHAT RESULT22")
+
               if (user.email === username && user.pass === password){
                 console.log( "=====Cработало правило")
                 return true 
@@ -87,11 +84,7 @@ const { link } = require('fs');
 
 
       
-      } else {
-    //     res.writeHead(404, { 'Content-Type': 'text/plain' });
-    //   return   res.end('Страница не найдена\n');
-      }
-
+      } 
 
       if (req.method === 'POST' && req.url === '/api/register'){
 
@@ -240,10 +233,7 @@ const { link } = require('fs');
               })
               connection.end();
      });
-} else {
-  // res.writeHead(404, { 'Content-Type': 'application/json' });
-  // res.end(JSON.stringify({ error: 'Not Found' }));
-}
+} 
 
 if (req.method === 'POST' && req.url === '/api/updateCount') {
   let data = '';
@@ -285,9 +275,6 @@ if (req.method === 'POST' && req.url === '/api/updateCount') {
           });
       });
   });
-} else {
-  // res.writeHead(404, { 'Content-Type': 'application/json' });
-  // res.end(JSON.stringify({ error: 'Not Found' }));
 }
 
 

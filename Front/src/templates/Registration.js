@@ -138,10 +138,7 @@ function Registration(){
           />
         </div>
         <div className='passErrMesage'>{password === repeatPass ? '': "Пароли не похожи попробуйте снова"}</div>
-        {/* <Link className='Link' to={isLoading ? "/home" : "/regist"} >  */}
         <button className='submit_regis' type="submit">Зарегистрироваться</button>
-         {/* </Link> */}
-        
       </form>
      
         </div>
