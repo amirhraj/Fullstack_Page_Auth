@@ -31,13 +31,14 @@ phpadmin
 приложение работает 
 
 чтобы запустить Rect приложение заходим в Front папку делаем ``` npm start ```  можете заходить с дефолтного порта
-чтобы зайти в клиент БД адрес localhost:8080
+чтобы зайти в клиент БД адрес
+``` localhost:8080  ```
 
 email и логин для входа
 
 alin@gmail.com
 alin123
-```
+
 ![Страница регистрации](https://github.com/amirhraj/Fullstack_Page_Auth/blob/main/Auth.PNG)
 
 ![Страница авторизации](https://github.com/amirhraj/Fullstack_Page_Auth/blob/main/Registration.PNG)
